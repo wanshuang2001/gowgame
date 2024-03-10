@@ -27,7 +27,7 @@ class Application with LoggerMixin {
     initializeLogger();
 
     // for smooth gradients
-    Paint.enableDithering = true;
+    //Paint.enableDithering = true;
 
     // set the visibility detector controller update interval to fire more
     // frequently

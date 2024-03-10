@@ -1,0 +1,36 @@
+Client Secret
+
+  nteugVrGfzY5qceslC5EDrpkhMyW5MSEz9DNGNN6AMXSMd2_5l
+  nteugVrGfzY5qceslC5EDrpkhMyW5MSEz9DNGNN6AMXSMd2_5l
+  
+  
+  
+  Consumer Keys:
+  
+  API Key
+
+
+  
+  Hd0g6KMZauOsoIOeixp8U8eoc
+  
+  
+  API Key Secret
+
+
+  dgBTo4NDSSI5GH4Ww76HfVS22fF9stZP9cy25tQM3rUVUXbGfC
+  
+  
+  flutter run --flavor free --dart-define=flavor=free --dart-define=twitter_consumer_key=Hd0g6KMZauOsoIOeixp8U8eoc --dart-define=dgBTo4NDSSI5GH4Ww76HfVS22fF9stZP9cy25tQM3rUVUXbGfC
+  
+  
+  systemProp.http.proxyHost=192.168.2.200
+systemProp.http.proxyPort=7890
+systemProp.https.proxyHost=192.168.2.200
+systemProp.https.proxyPort=7890
+
+
+http: ^0.13.6
+
+material_color_utilities: ^0.2.0
+
+material_color_utilities: ^0.8.0

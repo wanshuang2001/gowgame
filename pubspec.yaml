@@ -17,7 +17,7 @@ dependencies:
   connectivity_plus: ^4.0.1
   cupertino_icons: ^1.0.4
   dart_twitter_api: ^0.5.8
-  # dart_twitter_api: 
+  # dart_twitter_api:
   #   path: ../twitter_api
   device_info_plus: ^8.0.0
   download_manager:
@@ -55,7 +55,7 @@ dependencies:
   json_annotation: ^4.5.0
   location: ^4.4.0
   logging: ^1.0.1
-  material_color_utilities: ^0.2.0
+  material_color_utilities: ^0.8.0
   mime_type: ^1.0.0
   modal_bottom_sheet: ^3.0.0-pre
   package_info_plus: ^3.0.2
@@ -63,7 +63,7 @@ dependencies:
   permission_handler: ^10.0.0
   photo_view:
     # photo_view fork with better gesture recognition
-    git: https://github.com/robertodoering/photo_view.git
+    git: https://github.com/bluefireteam/photo_view
   rby:
     git: https://github.com/robertodoering/rby.dart
     # path: ../rby.dart
@@ -76,7 +76,7 @@ dependencies:
   sliver_tools: ^0.2.6
   smooth_page_indicator: ^1.0.0+2
   super_sliver_list:
-    git: 
+    git:
       url: https://github.com/superlistapp/super_sliver_list
       ref: 196abe17bae1803435d3112fd11c58ef4c2d577e
   timeago: ^3.0.2
@@ -84,7 +84,7 @@ dependencies:
   twitter_api_v2:
     # TODO: use pub when version 4.5.1+ is published
     git: https://github.com/robertodoering/twitter-api-v2
-      
+
   twitter_webview_auth: ^0.1.1
   url_launcher: ^6.0.10
   uuid: ^3.0.5
@@ -109,7 +109,7 @@ dev_dependencies:
   mocktail: ^0.3.0
   riverpod_generator: ^1.0.6
 
-dependency_overrides:  
+dependency_overrides:
   intl: ^0.18.0
 
 flutter:
