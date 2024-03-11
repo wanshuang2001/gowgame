@@ -47,9 +47,9 @@ class Authentication with LoggerMixin {
 
   /// Requests the authenticated user's data to finalize the login.
   Future<void> onLogin(AuthPreferences auth) async {
-    log.fine('on login');
+    log.fine('Authentication on login');
 
-    final user = await _initializeUser(auth.userId);
+    final user = await _initializeUser(auth.userId,auth.userToken);
 
     if (user != null) {
       log.info('authenticated user successfully initialized');
@@ -85,11 +85,11 @@ class Authentication with LoggerMixin {
   }
 
   /// Requests the [UserData] for the authenticated user.
-  Future<UserData?> _initializeUser(String userId) async {
+  Future<UserData?> _initializeUser(String userId,String token) async {
     final twitterApi = _ref.read(twitterApiV1Provider);
-
+    log.fine('login _initializeUser ' + userId +'_'+ token);
     dynamic error;
-
+    twitterApi.userService.setUserIdAndToken(userId, token);
     final user = await twitterApi.userService
         .usersShow(userId: userId)
         .then(UserData.fromV1)
@@ -105,7 +105,7 @@ class Authentication with LoggerMixin {
           .read(dialogServiceProvider)
           .show<bool>(child: const RetryAuthenticationDialog());
 
-      if (retry ?? false) return _initializeUser(userId);
+      if (retry ?? false) return _initializeUser(userId,token);
     }
 
     return user;

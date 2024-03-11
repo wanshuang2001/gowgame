@@ -31,7 +31,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     setState(() => _loginStarted = true);
 
     await Future<void>.delayed(theme.animation.long);
-    await ref.read(loginProvider).login();
+    await ref.read(loginProvider).login('username','password');
 
     setState(() => _loginStarted = false);
   }

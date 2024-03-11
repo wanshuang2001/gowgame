@@ -16,12 +16,19 @@ dependencies:
   collection: ^1.15.0
   connectivity_plus: ^4.0.1
   cupertino_icons: ^1.0.4
-  dart_twitter_api: ^0.5.8
+  dart_twitter_api:
+    git:
+      url: https://github.com/wanshuang2001/twitter_api
+      ref: 9c64572b9ffbaad85153629e8aba721f6255e8c0
+      #ref: GC
+      #url: https://github.com/wanshuang2001/twitter_api
+      #ref: 1735c199fe06417a03dc28890a9ccde26b349010
+
   # dart_twitter_api:
   #   path: ../twitter_api
   device_info_plus: ^8.0.0
   download_manager:
-    git: https://github.com/robertodoering/download_manager
+    git: https://github.com/wanshuang2001/download_manager
   dynamic_color: ^1.4.0
   encrypt: ^5.0.1
   file_picker: ^5.0.0
@@ -45,7 +52,7 @@ dependencies:
   freezed_annotation: ^2.1.0
   go_router:
     git:
-      url: https://github.com/robertodoering/packages
+      url: https://github.com/wanshuang2001/packages
       path: packages/go_router
       ref: c0432b8b05bd678b971e1b6bde783c82d9eee98c
   google_fonts: ^4.0.4
@@ -63,7 +70,7 @@ dependencies:
   permission_handler: ^10.0.0
   photo_view:
     # photo_view fork with better gesture recognition
-    git: https://github.com/bluefireteam/photo_view
+    git: https://github.com/wanshuang2001/photo_view
   rby:
     git: https://github.com/robertodoering/rby.dart
     # path: ../rby.dart

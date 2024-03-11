@@ -1,12 +1,13 @@
 import 'dart:async';
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:harpy/api/api.dart';
 import 'package:harpy/components/components.dart';
 import 'package:harpy/core/core.dart';
 import 'package:rby/rby.dart';
-import 'package:twitter_webview_auth/twitter_webview_auth.dart';
+//import 'package:twitter_webview_auth/twitter_webview_auth.dart';
+import 'package:http/http.dart' as http;
 
 /// Handles login.
 ///
@@ -39,6 +40,7 @@ class _Login with LoggerMixin {
   /// * [SetupPage] on successful authentication if the setup has not yet been
   ///   completed
   /// * [LoginPage] when authentication was not successful.
+  /*
   Future<void> login() async {
     if (!_environment.validateAppConfig()) {
       _ref
@@ -128,5 +130,87 @@ class _Login with LoggerMixin {
             builder: (_) => LoginWebview(webview: webview),
           ),
         );
+  }
+  */
+
+  Future<void> login(String username, String password) async {
+    if (!_environment.validateAppConfig()) {
+      _ref
+          .read(messageServiceProvider)
+          .showText('invalid twitter key / secret');
+      return;
+    }
+
+    log.fine('logging in');
+
+    _ref.read(authenticationStateProvider.notifier).state =
+    const AuthenticationState.awaitingAuthentication();
+
+    final key = _ref.read(consumerKeyProvider);
+    final secret = _ref.read(consumerSecretProvider);
+
+    // Replace the URL with the login endpoint of your server.
+    final loginUrl = 'http://114.55.66.178:5000/login';
+
+    final Map<String, dynamic> data = {
+      'username': key,
+      'password': secret,
+    };
+
+    final http.Response response = await http.post(
+      Uri.parse(loginUrl),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(data),
+    );
+
+
+    if (response.statusCode == 200) {
+       log.fine('logging in statusCode==200');
+       Map<String, dynamic> responseData = json.decode(response.body) as Map<String, dynamic>;
+
+      final String token = responseData['token'] as String;
+      //final String secret = responseData['secret'] as String;
+      final String userId = responseData['userId'] as String;
+
+      _ref.read(authPreferencesProvider.notifier).setAuth(
+        token: token,
+        secret: secret,
+        userId: userId,
+      );
+      log.fine('logging in response');
+      await _ref
+          .read(authenticationProvider)
+          .onLogin(_ref.read(authPreferencesProvider));
+
+      if (_ref.read(authenticationStateProvider).isAuthenticated) {
+        if (_ref.read(setupPreferencesProvider).performedSetup) {
+          _ref.read(routerProvider).goNamed(
+            HomePage.name,
+            queryParams: {'transition': 'fade'},
+          );
+        } else {
+          log.fine('logging in SetupPage');
+          _ref.read(routerProvider).goNamed(SetupPage.name);
+        }
+      } else {
+        log.fine('logging in LoginPage');
+        _ref.read(routerProvider).goNamed(LoginPage.name);
+      }
+    } else {
+      log.warning('login failed with status code ${response.statusCode}');
+
+      _ref.read(messageServiceProvider).showSnackbar(
+        const SnackBar(
+          content: Text('authentication failed, please try again'),
+        ),
+      );
+
+      _ref.read(authenticationStateProvider.notifier).state =
+      const AuthenticationState.unauthenticated();
+      log.fine('logging in LoginPage 2');
+      _ref.read(routerProvider).goNamed(LoginPage.name);
+    }
   }
 }

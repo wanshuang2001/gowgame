@@ -252,10 +252,11 @@ packages:
   dart_twitter_api:
     dependency: "direct main"
     description:
-      name: dart_twitter_api
-      sha256: "5c021a1e3aa386db711340bb4b233a676f05f29be3ba353fef74d9f31d30f628"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "."
+      ref: "9c64572b9ffbaad85153629e8aba721f6255e8c0"
+      resolved-ref: "9c64572b9ffbaad85153629e8aba721f6255e8c0"
+      url: "https://github.com/wanshuang2001/twitter_api"
+    source: git
     version: "0.5.8"
   dbus:
     dependency: transitive
@@ -295,7 +296,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: "749be8a4c6ccce65722c58c1c689a70a1eeaba28"
-      url: "https://github.com/robertodoering/download_manager"
+      url: "https://github.com/wanshuang2001/download_manager"
     source: git
     version: "0.0.0"
   dynamic_color:
@@ -549,7 +550,7 @@ packages:
       path: "packages/go_router"
       ref: c0432b8b05bd678b971e1b6bde783c82d9eee98c
       resolved-ref: c0432b8b05bd678b971e1b6bde783c82d9eee98c
-      url: "https://github.com/robertodoering/packages"
+      url: "https://github.com/wanshuang2001/packages"
     source: git
     version: "4.0.0"
   golden_toolkit:
@@ -935,7 +936,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: d2865d36766e5882bb4cccc91c1f64b91e287289
-      url: "https://github.com/bluefireteam/photo_view"
+      url: "https://github.com/wanshuang2001/photo_view"
     source: git
     version: "0.14.0"
   platform:
