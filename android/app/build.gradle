@@ -53,7 +53,7 @@ android {
   compileSdk 33
 
   defaultConfig {
-    minSdk 21
+    minSdk 26
     targetSdk 31
   }
 
@@ -100,4 +100,15 @@ android {
 
 flutter {
   source '../..'
+}
+
+dependencies {
+  //--------- for gamecreator
+
+
+  //for ue
+  implementation(name:'app-debug', ext:'aar')
+  implementation(name:'downloader_library-debug', ext:'aar')
+  implementation(name:'permission_library-debug', ext:'aar')
+
 }

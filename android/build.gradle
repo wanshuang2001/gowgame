@@ -21,6 +21,13 @@ allprojects {
   repositories {
     google()
     mavenCentral()
+
+    flatDir
+      {
+        dirs 'R:/Android/arm64/gradle/app/build/outputs/aar'
+        dirs 'R:/Android/arm64/gradle/downloader_library/build/outputs/aar'
+        dirs 'R:/Android/arm64/gradle/permission_library/build/outputs/aar'
+      }
   }
 }
 
