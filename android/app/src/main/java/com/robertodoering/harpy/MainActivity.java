@@ -17,10 +17,24 @@ import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 
+import io.flutter.plugin.common.BasicMessageChannel;
+import io.flutter.plugin.common.StandardMessageCodec;
+import java.util.HashMap;
+import java.util.Map;
+import android.util.Log;
+
 public class MainActivity extends FlutterActivity {
+  public static final String TAG = "MainActivity";
+  private static final String CHANNEL_NAME = "com.wanshuang2001.harpy/messages";
+  private BasicMessageChannel<Object> messageChannel;
+
+
   @Override
   public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
     GeneratedPluginRegistrant.registerWith(flutterEngine);
+
+    // Initialize the message channel and handle method calls from Flutter
+    setupMessageChannel(flutterEngine);
 
     handleMethodCalls(flutterEngine);
 
@@ -99,5 +113,70 @@ public class MainActivity extends FlutterActivity {
     }
 
     return false;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  private void setupMessageChannel(FlutterEngine flutterEngine) {
+    // Initialize the message channel
+    messageChannel = new BasicMessageChannel<Object>(
+      flutterEngine.getDartExecutor().getBinaryMessenger(),
+      CHANNEL_NAME,
+      StandardMessageCodec.INSTANCE
+    );
+
+    // Handle method calls from Flutter
+    messageChannel.setMessageHandler(new BasicMessageChannel.MessageHandler<Object>() {
+
+      public void onMessage(Object message, BasicMessageChannel.Reply<Object> reply) {
+        handleFlutterMessage(message,reply);
+      }
+    });
+  }
+
+  private void handleFlutterMessage(Object message, BasicMessageChannel.Reply<Object> reply) {
+    Map<Object, Object> arguments = (Map<Object, Object>)message;
+    //方法名标识
+    String lMethod = (String) arguments.get("method");
+    String param = (String) arguments.get("param");
+    Log.i(TAG, "message:"+lMethod);
+    Log.i(TAG, "param:"+param);
+    //测试 reply.reply()方法 发消息给Flutter
+    if(lMethod.equals("open_ue_game"))
+    {
+        String msg = "";
+        runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            UEManager.getInstance().OpenUE(MainActivity.this, param);
+          }
+        });
+    }
+    if (lMethod.equals("test")) {
+      //Toast.makeText(mContext, "flutter 调用到了 android test", Toast.LENGTH_SHORT).show();
+      //回调Flutter
+      Map<String, Object> resultMap = new HashMap<>();
+      resultMap.put("message", "reply.reply 返回给flutter的数据");
+      resultMap.put("code", 200);
+      //回调 此方法只能使用一次 向Flutter中反向回调消息
+      reply.reply(resultMap);
+    }
+    /*
+    if (message.containsKey("method")) {
+      String method = (String) message.get("method");
+      if ("showOpenByDefault".equals(method)) {
+        //showOpenByDefault();
+        reply.reply(true);
+      } else if ("hasUnapprovedDomains".equals(method)) {
+        reply.reply(hasUnapprovedDomains());
+      } else {
+        reply.reply(null);
+      }
+    } else {
+      reply.reply(null);
+    }*/
+  }
+  // Function to send a message to Flutter
+  private void sendMessageToFlutter(HashMap<String, Object> message) {
+    messageChannel.send(message);
   }
 }

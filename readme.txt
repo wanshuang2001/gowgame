@@ -34,3 +34,13 @@ http: ^0.13.6
 material_color_utilities: ^0.2.0
 
 material_color_utilities: ^0.8.0
+
+
+命令：
+flutter pub get
+flutter pub run build_runner build
+flutter run --flavor free --dart-define=flavor=free --dart-define=twitter_consumer_key=Hd0g6KMZauOsoIOeixp8U8eoc --dart-define=twitter_consumer_secret=dgBTo4NDSSI5GH4Ww76HfVS22fF9stZP9cy25tQM3rUVUXbGfC
+
+
+打包为小体积
+flutter build apk --obfuscate --split-debug-info=HLQ_Struggle --target-platform android-arm64 --split-per-abi --release --flavor free

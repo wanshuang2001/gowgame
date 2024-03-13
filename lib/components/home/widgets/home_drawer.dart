@@ -8,6 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:harpy/components/components.dart';
 import 'package:harpy/core/core.dart';
 import 'package:rby/rby.dart';
+import 'package:harpy/components/application/communication.dart';
+import 'dart:convert';
 
 typedef AnimatedWidgetBuilder = Widget Function(
   AnimationController controller,
@@ -237,6 +239,19 @@ class _Entries extends ConsumerWidget {
 
     if (user == null) return const SizedBox();
 
+
+    var message = {
+      "From": "editgamemap",
+      "To": "ue",
+      "Type": "Level",
+      "Id": "1",
+      "GoJsLayoutHash": "",
+      "ActorConfigHash": "",
+      "bEditMode": false,
+      "bNetMode": true
+    };
+    var jsonString = jsonEncode(message);
+
     final children = [
       RbyListCard(
         leading: const Icon(CupertinoIcons.person),
@@ -273,6 +288,12 @@ class _Entries extends ConsumerWidget {
         leading: const Icon(Icons.settings_rounded),
         title: const Text('settings'),
         onTap: () => context.pushNamed(SettingsPage.name),
+      ),
+      VerticalSpacer.normal,
+      RbyListCard(
+        leading: const Icon(Icons.settings_rounded),
+        title: const Text('opengame'),
+        onTap: () => sendMessage({'method': 'open_ue_game','param': jsonString}),
       ),
       VerticalSpacer.normal,
       if (isFree) ...[
