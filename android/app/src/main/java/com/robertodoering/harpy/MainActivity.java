@@ -22,15 +22,25 @@ import io.flutter.plugin.common.StandardMessageCodec;
 import java.util.HashMap;
 import java.util.Map;
 import android.util.Log;
+import com.myxyz.chat.ChatCallBackImp;
+import com.epicgames.unreal.ChatBridge;
 
 public class MainActivity extends FlutterActivity {
   public static final String TAG = "MainActivity";
   private static final String CHANNEL_NAME = "com.wanshuang2001.harpy/messages";
   private BasicMessageChannel<Object> messageChannel;
 
+  static public ChatCallBackImp chatcallbackimp;
 
   @Override
   public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
+
+    if(chatcallbackimp==null)
+    {
+      chatcallbackimp = new ChatCallBackImp();
+      ChatBridge.getInstance().SetChatCallBack(chatcallbackimp);
+    }
+
     GeneratedPluginRegistrant.registerWith(flutterEngine);
 
     // Initialize the message channel and handle method calls from Flutter
