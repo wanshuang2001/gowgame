@@ -1,4 +1,4 @@
-package com.robertodoering.harpy;
+package com.gowgame.app;
 
 import android.content.Context;
 import android.content.Intent;

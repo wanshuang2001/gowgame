@@ -7,7 +7,7 @@ import android.util.Log;
 import android.content.Context;
 
 //import cn.wildfire.chat.app.main.MainActivity;
-import com.robertodoering.harpy.MainActivity;
+import com.gowgame.app.MainActivity;
 public class ChatCallBackImp implements IChatCallBack
 {
 	private static final String TAG = "ChatCallBackImp";

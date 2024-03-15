@@ -3,26 +3,26 @@ json_key_file("fastlane/play_store_key.json")
 
 
 for_lane :free_production do
-    package_name("com.robertodoering.harpy.free")
+    package_name("com.gowgame.app.free")
 end
 
 for_lane :free_beta do
-    package_name("com.robertodoering.harpy.free")
+    package_name("com.gowgame.app.free")
 end
 
 for_lane :free_alpha do
-    package_name("com.robertodoering.harpy.free")
+    package_name("com.gowgame.app.free")
 end
 
 
 for_lane :pro_production do
-    package_name("com.robertodoering.harpy.pro")
+    package_name("com.gowgame.app.pro")
 end
 
 for_lane :pro_beta do
-    package_name("com.robertodoering.harpy.pro")
+    package_name("com.gowgame.app.pro")
 end
 
 for_lane :pro_alpha do
-    package_name("com.robertodoering.harpy.pro")
+    package_name("com.gowgame.app.pro")
 end

@@ -1,4 +1,4 @@
-package com.robertodoering.harpy;
+package com.gowgame.app;
 
 import android.content.Context;
 import android.content.Intent;
@@ -63,7 +63,7 @@ public class MainActivity extends FlutterActivity {
   }
 
   private void handleMethodCalls(@NonNull FlutterEngine flutterEngine) {
-    new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), "com.robertodoering.harpy")
+    new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), "com.gowgame.app")
       .setMethodCallHandler(
         (call, result) -> {
           if (call.method.equals("showOpenByDefault")) {

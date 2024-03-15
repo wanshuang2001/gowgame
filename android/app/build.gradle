@@ -61,12 +61,12 @@ android {
 
   productFlavors {
     free {
-      applicationId "com.robertodoering.harpy.free"
+      applicationId "com.gowgame.app.free"
       versionCode freeVersionCode.toInteger()
       versionName freeVersionName
     }
     pro {
-      applicationId "com.robertodoering.harpy.pro"
+      applicationId "com.gowgame.app.pro"
       versionCode proVersionCode.toInteger()
       versionName proVersionName
     }
